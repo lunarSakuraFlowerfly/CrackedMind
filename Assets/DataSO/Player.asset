@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f2812af4076c44aae850322f97e158, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  id: 0
+  Name: Luna
+  currentHp:
+    propertyType: 0
+    value: 100
+  maxHp:
+    propertyType: 0
+    value: 100
+  currentMagic:
+    propertyType: 1
+    value: 100
+  maxMagic:
+    propertyType: 1
+    value: 100
+  currentHungry:
+    propertyType: 2
+    value: 100
+  maxHungry:
+    propertyType: 2
+    value: 100
+  attackValue:
+    propertyType: 4
+    value: 1
+  attackSpeed:
+    propertyType: 5
+    value: 1
+  defensiveValue:
+    propertyType: 6
+    value: 0
+  walkSpeed:
+    propertyType: 3
+    value: 3
+  runSpeed:
+    propertyType: 3
+    value: 5
+  criticalChance:
+    propertyType: 7
+    value: 0
+  criticalEffect:
+    propertyType: 8
+    value: 0
+  exp:
+    propertyType: 10
+    value: 0
+  level:
+    propertyType: 11
+    value: 1
+  iconSprite: {fileID: 21300000, guid: 2410d74f63711a646bfbc47e223c28b2, type: 3}
+  characterPrefab: {fileID: 6425243200327904313, guid: a71a851bb3c897d4a9a22fcc44c7b8b1, type: 3}
