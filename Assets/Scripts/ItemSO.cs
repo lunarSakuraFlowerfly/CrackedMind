@@ -37,16 +37,19 @@ public class Property
 public enum PropertyType
 {
     HpValue,
-    MagicValue, //蓝条
-    HungryValue, //饥饿
-    //MentalValue, //精神
+    //MagicValue, //蓝条
+    //HungryValue, //饥饿
+    MentalValue, //精神，心理阈值
     MoveSpeed,
     AttackValue,
     AttackSpeed,
-    DefensiveValue,//防御力
-    CriticalChance, //暴击率
-    CriticalEffect, //暴击效果
-    Hemophagia, //吸血
+    DefensiveValue,//防御力/意志力
+    Lucky, //幸运值
+    //CriticalChance, //暴击率
+    //CriticalEffect, //暴击效果
+    //Hemophagia, //吸血
     Exp, //经验
     Level, //等级
+    Sober, //清醒度
+    SoberChangeSpeed, //清醒度增加速率
 }

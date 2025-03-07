@@ -118,7 +118,8 @@ GameObject:
   - component: {fileID: 4471316327564117342}
   - component: {fileID: 2779736337004112314}
   - component: {fileID: 6651006767823324744}
-  m_Layer: 0
+  - component: {fileID: 8683645768077870960}
+  m_Layer: 6
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5af0dd4b1cf44c4c9de2c2321571121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 3
+  sprintSpeed: 3
+  playerSO: {fileID: 11400000, guid: 5d0fc132ca8010e4f8bfa88dfc171a30, type: 2}
+  startEffectPrefab: {fileID: 2569221953742847651, guid: f6dd75e56161e8143986e7bcf2e6fdfa, type: 3}
 --- !u!70 &2779736337004112314
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,3 +219,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8683645768077870960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425243200327904313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccbb068af2a2bc34985545aa72589dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSO: {fileID: 11400000, guid: 5d0fc132ca8010e4f8bfa88dfc171a30, type: 2}

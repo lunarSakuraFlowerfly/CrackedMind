@@ -21,6 +21,6 @@ public class PlayerUI : Singleton<PlayerUI>
     {
         healthSlider.fillAmount = playerSO.currentHp.value / playerSO.maxHp.value;
         expSlider.fillAmount = playerSO.exp.value / 20 + Mathf.Pow(playerSO.level.value, 2.25f + Mathf.Log10(playerSO.level.value));
-        magicSlider.fillAmount = playerSO.currentMagic.value / playerSO.maxMagic.value;
+        //magicSlider.fillAmount = playerSO.currentMagic.value / playerSO.maxMagic.value;
     }
 }

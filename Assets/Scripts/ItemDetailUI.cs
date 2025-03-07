@@ -71,15 +71,15 @@ public class ItemDetailUI : MonoBehaviour
                 //case PropertyType.MentalValue:
                 //    itemType = "精神值: ";
                 //    break;
-                case PropertyType.MagicValue:
-                    itemType = "法力值: ";
-                    break;
+                //case PropertyType.MagicValue:
+                //    itemType = "法力值: ";
+                //    break;
                 case PropertyType.MoveSpeed:
                     itemType = "速度值: ";
                     break;
-                case PropertyType.HungryValue:
-                    itemType = "饱食度: ";
-                    break;
+                //case PropertyType.HungryValue:
+                //    itemType = "饱食度: ";
+                //    break;
                 case PropertyType.AttackValue:
                     itemType = "攻击力: ";
                     break;
