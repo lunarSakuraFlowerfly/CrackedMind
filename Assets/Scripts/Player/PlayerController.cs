@@ -11,12 +11,13 @@ public class PlayerController : MonoBehaviour
     private float playerSpeed;
     public float sprintSpeed;
     private Collider2D cd2D;
-    private Rigidbody2D rb2D;
+    public Rigidbody2D rb2D;
     private Animator animator;
-    private Vector2 lookAt = new Vector2(-1, 0);
+    public Vector2 lookAt = new Vector2(-1, 0);
     private bool isClimb=false;
     private bool isSprint = false;
-    private bool isAttack = false;
+    private bool isLightAttack = false;
+    private bool isHeavyAttack = false;
     private float hitTimer=0f;
     public CharacterSO playerSO;
     public GameObject startEffectPrefab;
@@ -49,18 +50,18 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if (!isAttack && Input.GetKeyDown(KeyCode.LeftShift))
+        if (!isLightAttack && !isHeavyAttack && Input.GetKeyDown(KeyCode.LeftShift))
         {
             isSprint = true;
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true); //禁用碰撞
             
             StartCoroutine(Sprint());
         }
-        if(!isSprint && Input.GetKeyDown(KeyCode.J) && hitTimer <= 0.2f)
+        if(!isSprint && !isHeavyAttack && Input.GetKeyDown(KeyCode.J) && hitTimer <= 0.2f)
         {
             animator.SetFloat("AttackSpeed",playerSO.attackSpeed.value);
             hitTimer = 1.0f/playerSO.attackSpeed.value + 0.2f;
-            isAttack = true;
+            isLightAttack = true;
             if (!animator.GetBool("Attack1"))
             {
                 animator.SetBool("Attack1", true);
@@ -77,25 +78,38 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Attack3", false);
             }
         }
-        if (isAttack)
+        if (isLightAttack)
         {
             hitTimer -= Time.deltaTime;
             if(hitTimer < 0)
             {
-                isAttack = false;
+                isLightAttack = false;
                 animator.SetBool("Attack1", false);
                 animator.SetBool("Attack2", false);
                 animator.SetBool("Attack3", false);
             }
         }
-        if (!isSprint && !isAttack)
+        if(!isSprint && Input.GetKeyDown(KeyCode.K))
         {
+            animator.SetFloat("MoveValue", 0);
+            playerSpeed = playerSO.walkSpeed.value;
+            animator.SetBool("Attack1", false);
+            animator.SetBool("Attack2", false);
+            animator.SetBool("Attack3", false);
+            animator.SetBool("Attack4", true); //动画结束后执行取消重击
+            isHeavyAttack = true;
+        }
+        if(!isHeavyAttack)
             if(!Mathf.Approximately(horizontal,0)|| !Mathf.Approximately(vertical, 0)) //其中一个不为0
             {
                 lookAt.Set(horizontal, vertical);
                 lookAt.Normalize();
                 animator.SetFloat("LookX",lookAt.x);
                 animator.SetFloat("LookY",lookAt.y);
+                if(isSprint ||  isLightAttack)
+                {
+                    goto NoMove; //如果处于非移动状态，只改变方向，不移动
+                }
                 if (Input.GetKey(KeyCode.LeftShift)) //注意不是getkeydown
                 {
                     animator.SetFloat("MoveValue", 1); //奔跑
@@ -116,11 +130,25 @@ public class PlayerController : MonoBehaviour
             {
                 animator.speed = animator.GetFloat("MoveValue");
             }
-        }
+    NoMove:;
+        
         //transform.Translate(playerSpeed*horizontal * Time.deltaTime, playerSpeed*vertical * Time.deltaTime,0,Space.Self);
         //Vector2 position = new Vector2(playerSpeed * horizontal * Time.deltaTime, playerSpeed * vertical * Time.deltaTime);
     }
 
+    public void HeavyAttackFalse()
+    {
+        isHeavyAttack = false;
+        animator.SetBool("Attack4", false);
+    }
+    public void LightAttackMove(float moveDis)
+    {
+        rb2D.MovePosition((Vector2)transform.position+lookAt*moveDis*Time.deltaTime);
+    }
+    public void HeavyAttackMove(float moveDis)
+    {
+        rb2D.MovePosition((Vector2)transform.position+lookAt*moveDis*Time.deltaTime);
+    }
     IEnumerator Sprint()
     {
         float timer = 0f;
@@ -168,6 +196,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damageValue)
+    {
+        PropertyChange(PropertyType.HpValue, damageValue);
+        playerSO.soberValue.value += playerSO.soberChangeSpeed.value;
+        if(playerSO.soberValue.value > 100)
+        {
+            //TODO:回到现实
+        }
+    }
+
+    private void Died()
+    {
+        //TODO:死亡 
+    }
     public void PropertyChange(PropertyType changePropertyType, float changeValue)
     {
       
@@ -176,6 +218,10 @@ public class PlayerController : MonoBehaviour
             case PropertyType.HpValue:
                 playerSO.currentHp.value =Mathf.Clamp(playerSO.currentHp.value + changeValue, 0, playerSO.maxHp.value);
                 PlayerUI.Instance.UpdatePlayerPropertyUI();
+                if (Mathf.Approximately(playerSO.currentHp.value, 0))
+                {
+                    Died();
+                }
                 Debug.Log("血量改变");
                 break;
             //case PropertyType.MagicValue:
