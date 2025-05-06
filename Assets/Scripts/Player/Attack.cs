@@ -13,24 +13,25 @@ public class Attack : MonoBehaviour
     private Vector2 AttackAreaPos; //攻击范围原点
     public float lightAttackMoveDis = 0.2f;
     public float heavyAttackMoveDis = 1f;
+    
 
     public void LightAttackEvent(float isAttackAnimation)
     {
         switch (isAttackAnimation)
         {
             case 1:
-                offsetX = -0.6f;
-                offsetY = 0;
+                offsetX = 0.6f*PlayerController.Instance.lookAt.x;
+                offsetY = 0.6f * PlayerController.Instance.lookAt.y;
                 attackSize = new Vector2(1, 1.3f);
                 break;
             case 2:
-                offsetX = -0.6f;
-                offsetY = 0;
+                offsetX = PlayerController.Instance.lookAt.x*0.6f;
+                offsetY = 0.6f * PlayerController.Instance.lookAt.y;
                 attackSize = new Vector2(1, 1.3f);
                 break;
             case 3:
-                offsetX = -0.6f;
-                offsetY = 0;
+                offsetX = PlayerController.Instance.lookAt.x * 0.6f;
+                offsetY = 0.6f * PlayerController.Instance.lookAt.y;
                 attackSize = new Vector2(1, 1.3f);
                 break;
             //case 4:
@@ -56,8 +57,8 @@ public class Attack : MonoBehaviour
         switch (isAttackAnimation)
         {
             case 4:
-                offsetX = -0.6f;
-                offsetY = 0;
+                offsetX = PlayerController.Instance.lookAt.x * 0.6f;
+                offsetY = 0.6f * PlayerController.Instance.lookAt.y;
                 attackSize = new Vector2(1.2f, 1.5f);
                 break;
         }
@@ -79,6 +80,50 @@ public class Attack : MonoBehaviour
     {
         PlayerController.Instance.HeavyAttackFalse();
     }
+
+    //技能攻击
+    
+    #region HeartSlash
+
+    public void HeartSlashEvent()
+    {
+        Debug.Log("触发HeartSlashEvent技能效果");
+        offsetX = PlayerController.Instance.lookAt.x * 0.6f;
+        offsetY = 0.6f * PlayerController.Instance.lookAt.y;
+        attackSize = new Vector2(1, 1.3f);
+        AttackAreaPos = transform.position;
+        AttackAreaPos.x += offsetX;
+        AttackAreaPos.y += offsetY;
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(AttackAreaPos,attackSize,0);
+
+        float attackValue = 0;
+        switch (PlayerController.Instance.playerSkillSO.HeartSlash.skillLevel)
+        {
+            case 1:
+                attackValue = PlayerController.Instance.playerSO.attackValue.value * 1.2f;
+                break;
+            case 2:
+                attackValue = PlayerController.Instance.playerSO.attackValue.value * 1.3f;
+                break;
+            case 3:
+                attackValue = PlayerController.Instance.playerSO.attackValue.value * 1.4f;
+                break;
+            case 4:
+                attackValue = PlayerController.Instance.playerSO.attackValue.value * 1.5f;
+                break;
+            case 5:
+                attackValue = PlayerController.Instance.playerSO.attackValue.value * 1.6f;
+                break;
+        }
+
+
+        foreach (Collider2D hitcollider in hitColliders)
+        {
+            //TODO获取敌人受伤函数
+        }
+    }
+    #endregion
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

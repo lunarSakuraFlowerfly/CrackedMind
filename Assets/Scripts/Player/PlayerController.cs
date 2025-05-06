@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
-    public static PlayerController Instance { get; private set; }
     private float playerSpeed;
     public float sprintSpeed;
     private Collider2D cd2D;
     public Rigidbody2D rb2D;
     private Animator animator;
-    public Vector2 lookAt = new Vector2(-1, 0);
+    private SkillTree playerSkillTree;
+    public SkillSO playerSkillSO;
+    public Shield playerShieldSystem;
+    public bool isSkillTimer = false;
+    private Dictionary<string, float> cooldowns = new Dictionary<string, float>(); //记录冷却
+    private Dictionary<string, Action> skillMap;
+    public Vector2 lookAt = new Vector2(0, -1);
     private bool isClimb=false;
     private bool isSprint = false;
     private bool isLightAttack = false;
@@ -22,15 +28,6 @@ public class PlayerController : MonoBehaviour
     public CharacterSO playerSO;
     public GameObject startEffectPrefab;
     //public Dictionary<PropertyType, float> characterPropertyDictionary;
-    private void Awake()
-    {
-        if(Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
 
     private void Start()
     {
@@ -38,6 +35,7 @@ public class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         cd2D = GetComponent<Collider2D>();
         animator = GetComponentInChildren<Animator>();
+        playerSkillTree = GetComponent<SkillTree>();    
         playerSO.currentHp.value = playerSO.maxHp.value;
         //playerSO.currentMagic.value = playerSO.maxMagic.value;
         //playerSO.currentHungry.value = playerSO.maxHungry.value;
@@ -45,95 +43,116 @@ public class PlayerController : MonoBehaviour
         PlayerUI.Instance.UpdatePlayerPropertyUI();
         //characterPropertyDictionary = new Dictionary<PropertyType, float>();
         //characterPropertyDictionary.Add(characterSO.propertyList[0].propertyType, characterSO.propertyList[0].value);
+        UpdateSkillMap();
     }
     private void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        if (!isLightAttack && !isHeavyAttack && Input.GetKeyDown(KeyCode.LeftShift))
+        if (!isSkillTimer)
         {
-            isSprint = true;
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true); //禁用碰撞
+
+            #region 基本操作
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+            if (!isLightAttack && !isHeavyAttack && Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                isSprint = true;
+                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true); //禁用碰撞
             
-            StartCoroutine(Sprint());
-        }
-        if(!isSprint && !isHeavyAttack && Input.GetKeyDown(KeyCode.J) && hitTimer <= 0.2f)
-        {
-            animator.SetFloat("AttackSpeed",playerSO.attackSpeed.value);
-            hitTimer = 1.0f/playerSO.attackSpeed.value + 0.2f;
-            isLightAttack = true;
-            if (!animator.GetBool("Attack1"))
-            {
-                animator.SetBool("Attack1", true);
-            }else if (!animator.GetBool("Attack2"))
-            {
-                animator.SetBool("Attack2", true);
-            }else if (!animator.GetBool("Attack3"))
-            {
-                animator.SetBool("Attack3", true);
-            }else if (animator.GetBool("Attack3"))
-            {
-                animator.SetBool("Attack1", true);
-                animator.SetBool("Attack2", false);
-                animator.SetBool("Attack3", false);
+                StartCoroutine(Sprint());
             }
-        }
-        if (isLightAttack)
-        {
-            hitTimer -= Time.deltaTime;
-            if(hitTimer < 0)
+            if(!isSprint && !isHeavyAttack && Input.GetKeyDown(KeyCode.J) && hitTimer <= 0.2f)
             {
-                isLightAttack = false;
+                animator.SetFloat("AttackSpeed",playerSO.attackSpeed.value);
+                hitTimer = 1.0f/playerSO.attackSpeed.value + 0.2f;
+                isLightAttack = true;
+                if (!animator.GetBool("Attack1"))
+                {
+                    animator.SetBool("Attack1", true);
+                }else if (!animator.GetBool("Attack2"))
+                {
+                    animator.SetBool("Attack2", true);
+                }else if (!animator.GetBool("Attack3"))
+                {
+                    animator.SetBool("Attack3", true);
+                }else if (animator.GetBool("Attack3"))
+                {
+                    animator.SetBool("Attack1", true);
+                    animator.SetBool("Attack2", false);
+                    animator.SetBool("Attack3", false);
+                }
+            }
+            if (isLightAttack)
+            {
+                hitTimer -= Time.deltaTime;
+                if(hitTimer < 0)
+                {
+                    isLightAttack = false;
+                    animator.SetBool("Attack1", false);
+                    animator.SetBool("Attack2", false);
+                    animator.SetBool("Attack3", false);
+                }
+            }
+            if(!isSprint && Input.GetKeyDown(KeyCode.K))
+            {
+                animator.SetFloat("MoveValue", 0);
+                playerSpeed = playerSO.walkSpeed.value;
                 animator.SetBool("Attack1", false);
                 animator.SetBool("Attack2", false);
                 animator.SetBool("Attack3", false);
+                animator.SetBool("Attack4", true); //动画结束后执行取消重击
+                isHeavyAttack = true;
             }
-        }
-        if(!isSprint && Input.GetKeyDown(KeyCode.K))
-        {
-            animator.SetFloat("MoveValue", 0);
-            playerSpeed = playerSO.walkSpeed.value;
-            animator.SetBool("Attack1", false);
-            animator.SetBool("Attack2", false);
-            animator.SetBool("Attack3", false);
-            animator.SetBool("Attack4", true); //动画结束后执行取消重击
-            isHeavyAttack = true;
-        }
-        if(!isHeavyAttack)
-            if(!Mathf.Approximately(horizontal,0)|| !Mathf.Approximately(vertical, 0)) //其中一个不为0
-            {
-                lookAt.Set(horizontal, vertical);
-                lookAt.Normalize();
-                animator.SetFloat("LookX",lookAt.x);
-                animator.SetFloat("LookY",lookAt.y);
-                if(isSprint ||  isLightAttack)
+            if(!isHeavyAttack)
+                if(!Mathf.Approximately(horizontal,0)|| !Mathf.Approximately(vertical, 0)) //其中一个不为0
                 {
-                    goto NoMove; //如果处于非移动状态，只改变方向，不移动
-                }
-                if (Input.GetKey(KeyCode.LeftShift)) //注意不是getkeydown
-                {
-                    animator.SetFloat("MoveValue", 1); //奔跑
-                    playerSpeed = playerSO.runSpeed.value;
+                    lookAt.Set(horizontal, vertical);
+                    lookAt.Normalize();
+                    animator.SetFloat("LookX",lookAt.x);
+                    animator.SetFloat("LookY",lookAt.y);
+                    if(isSprint ||  isLightAttack)
+                    {
+                        goto NoMove; //如果处于非移动状态，只改变方向，不移动
+                    }
+                    if (Input.GetKey(KeyCode.LeftShift)) //注意不是getkeydown
+                    {
+                        animator.SetFloat("MoveValue", 1); //奔跑
+                        playerSpeed = playerSO.runSpeed.value;
+                    }
+                    else
+                    {
+                        animator.SetFloat("MoveValue", 0.5f); //行走
+                        playerSpeed = playerSO.walkSpeed.value;
+                    }
+                    rb2D.MovePosition((Vector2)transform.position+lookAt*playerSpeed*Time.deltaTime);
                 }
                 else
                 {
-                    animator.SetFloat("MoveValue", 0.5f); //行走
-                    playerSpeed = playerSO.walkSpeed.value;
+                    animator.SetFloat("MoveValue", 0);
                 }
-                rb2D.MovePosition((Vector2)transform.position+lookAt*playerSpeed*Time.deltaTime);
-            }
-            else
-            {
-                animator.SetFloat("MoveValue", 0);
-            }
-            if (isClimb) //攀爬
-            {
-                animator.speed = animator.GetFloat("MoveValue");
-            }
-    NoMove:;
-        
-        //transform.Translate(playerSpeed*horizontal * Time.deltaTime, playerSpeed*vertical * Time.deltaTime,0,Space.Self);
-        //Vector2 position = new Vector2(playerSpeed * horizontal * Time.deltaTime, playerSpeed * vertical * Time.deltaTime);
+                if (isClimb) //攀爬
+                {
+                    animator.speed = animator.GetFloat("MoveValue");
+                }
+        NoMove:;
+            //transform.Translate(playerSpeed*horizontal * Time.deltaTime, playerSpeed*vertical * Time.deltaTime,0,Space.Self);
+            //Vector2 position = new Vector2(playerSpeed * horizontal * Time.deltaTime, playerSpeed * vertical * Time.deltaTime);
+        }
+        #endregion
+        #region 技能操作
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UseSkill("HeartSlash");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UseSkill("MindShield");
+        }
+        if(Input.GetKeyDown(KeyCode.Minus))
+        {
+            playerShieldSystem.ChangeShieldValue(10);
+            
+        }
+        #endregion
     }
 
     public void HeavyAttackFalse()
@@ -281,4 +300,81 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
     }
+
+
+    #region Skill
+    private void UpdateSkillMap()
+    {
+        skillMap = new Dictionary<string, Action> //初始化技能字典
+        {
+            { "HeartSlash",HeartSlash},
+            { "MindShield",MindShield},
+        };
+    }
+    private void UseSkill(string skillName)
+    {
+        if(!IsSkillCoolDown(skillName))//不在cd中
+        {
+            if(skillMap.TryGetValue(skillName, out Action action)) //尝试获取函数名并传给action
+            {
+                action.Invoke();
+                
+            }
+        }
+        else
+        {
+            Debug.Log($"{skillName}技能还在cd中");
+        }
+    }
+    
+    private bool IsSkillCoolDown(string skillName)
+    {
+        return cooldowns.ContainsKey(skillName) && cooldowns[skillName] > Time.time;
+    }
+    private void AddSkillCoolDown(string skillName, float coolTime)
+    {
+        if (skillMap[skillName] == null)
+            return;
+
+        cooldowns.Add(skillName, coolTime+Time.time); //注意要加上Time.time
+        Debug.Log("添加技能cd到字典");
+    }
+    private void ChangeIsSkillTimer()
+    {
+        isSkillTimer = !isSkillTimer;
+        Debug.Log("改变IsSkillTimer" + PlayerController.Instance.isSkillTimer);
+    }
+    public void HeartSlash() //模版
+    {
+        if (playerSkillSO.HeartSlash.skillLevel == 0)
+        {
+            Debug.Log("技能HeartSlash未解锁");
+            return;
+        }
+        //if()
+        animator.SetTrigger("HeartSlash");
+        Debug.Log("释放技能HeartSlash");
+        ChangeIsSkillTimer();
+        Invoke(nameof(ChangeIsSkillTimer), 0.35f);
+        if (cooldowns.ContainsKey("HeartSlash"))
+            cooldowns.Remove("HeartSlash");
+        AddSkillCoolDown("HeartSlash", playerSkillSO.HeartSlash.skillTime);
+    }
+    public void MindShield()
+    {
+        if(playerSkillSO.MindShield.skillLevel == 0)
+        {
+            Debug.Log("技能MindShield未解锁");
+            return;
+        }
+        animator.SetTrigger("MindShield");
+        Debug.Log("释放技能MindShield");
+        ChangeIsSkillTimer();
+        Invoke(nameof(ChangeIsSkillTimer), 0.35f);
+        if (cooldowns.ContainsKey("MindShield"))
+            cooldowns.Remove("MindShield");
+        AddSkillCoolDown("MindShield", playerSkillSO.MindShield.skillTime);
+
+    }
+    #endregion
 }

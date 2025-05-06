@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Buff : MonoBehaviour
@@ -7,7 +8,7 @@ public class Buff : MonoBehaviour
     public BuffData buffData;
     private float timer;
 
-    private void Start()
+    protected virtual void Start()
     {
         timer = buffData.duration;
     }
@@ -20,17 +21,18 @@ public class Buff : MonoBehaviour
             Remove();
         }
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        if (buffData == null)
-        {
-            string path = "Assets/BuffData/DisintegrateBuff.asset";
-            buffData = UnityEditor.AssetDatabase.LoadAssetAtPath<BuffData>(path);
-            if (buffData == null)
-            {
-                Debug.LogError("没找到该BuffData");
-            }
-        }
+        //if (buffData == null)
+        //{
+        //    string path = "Assets/BuffData/DisintegrateBuff.asset";
+        //    buffData = UnityEditor.AssetDatabase.LoadAssetAtPath<BuffData>(path);
+        //    if (buffData == null)
+        //    {
+        //        Debug.LogError("没找到该BuffData");
+        //        return;
+        //    }
+        //}
         Apply();
     }
 

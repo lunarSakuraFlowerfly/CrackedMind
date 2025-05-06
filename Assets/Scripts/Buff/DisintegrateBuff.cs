@@ -17,6 +17,21 @@ public class DisintegrateBuff : Buff
     //        }
     //    }
     //}
+
+    protected override void OnEnable()
+    {
+        if (buffData == null)
+        {
+            string path = "Assets/BuffData/DisintegrateBuff.asset";
+            buffData = UnityEditor.AssetDatabase.LoadAssetAtPath<BuffData>(path);
+            if (buffData == null)
+            {
+                Debug.LogError("√ª’“µΩ∏√BuffData");
+                return;
+            }
+        }
+        Apply();
+    }
     protected override void Apply()
     {
         base.Apply();

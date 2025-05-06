@@ -52,4 +52,5 @@ public enum PropertyType
     Level, //等级
     Sober, //清醒度
     SoberChangeSpeed, //清醒度增加速率
+    Shiled, //护盾值
 }

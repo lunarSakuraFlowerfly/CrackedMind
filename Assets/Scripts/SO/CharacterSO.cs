@@ -29,4 +29,6 @@ public class CharacterSO : ScriptableObject
     public Property soberChangeSpeed;
     public Sprite iconSprite;
     public GameObject characterPrefab;
+    public int soulFragment;
+    public Property Shield;
 }
