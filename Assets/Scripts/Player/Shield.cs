@@ -45,14 +45,19 @@ public class Shield : MonoBehaviour
     /// <param name="shieldName"></param>
     private void RemoveShield(string shieldName)
     {
-        if (shieldDictionary.ContainsKey(shieldName))
-            shieldDictionary.Remove(shieldName);
-        shieldCoroutines.Remove(shieldName);
+        
         //删除护盾物体
         if (shieldDictionary[shieldName].shieldInstance != null)
         {
             Destroy(shieldDictionary[shieldName].shieldInstance);
             Debug.Log("删除护盾物体");
+            if (shieldDictionary.ContainsKey(shieldName))
+                shieldDictionary.Remove(shieldName);
+            if (shieldCoroutines.ContainsKey(shieldName))
+            {
+                StopCoroutine (shieldCoroutines[shieldName]); //把协程停了再从字典里移除
+                shieldCoroutines.Remove(shieldName);
+            }
         }
     }
     /// <summary>
@@ -62,7 +67,7 @@ public class Shield : MonoBehaviour
     /// <returns></returns>
     IEnumerator RemoveShieldDelayed(string shieldName)
     {
-
+        //删除护盾物体
         yield return new WaitForSeconds(shieldDictionary[shieldName].shieldTimer);
         if (shieldDictionary[shieldName].shieldInstance != null)
         {
@@ -71,23 +76,41 @@ public class Shield : MonoBehaviour
         }
         if (shieldDictionary.ContainsKey(shieldName))
             shieldDictionary.Remove(shieldName);
-        shieldCoroutines.Remove(shieldName);
-        //删除护盾物体
-        
+        if (shieldCoroutines.ContainsKey(shieldName))
+        {
+            shieldCoroutines.Remove(shieldName);
+        }
     }
 
     public void ChangeShieldValue(float changeValue = 0)
     {
-        foreach(var shield in shieldDictionary) 
+        var keys = shieldDictionary.Keys.ToList();
+        foreach(var key in keys) 
         {
-            if(shield.Value != null) //shield.Value得到ShieldProperty
+            if (!shieldDictionary.ContainsKey(key))
+                continue;
+            var shield = shieldDictionary[key];
+            if(shield == null)
+                continue;
+
+            Debug.Log("减少护盾量10");
+            shield.shieldValue = Mathf.Clamp(shield.shieldValue + changeValue, 0, float.PositiveInfinity); //0-正无穷
+            if(changeValue > 0)
             {
-                //TODO:这里没有成功删除护盾
-                Debug.Log("减少护盾量10");
-                shield.Value.shieldValue = Mathf.Clamp(shield.Value.shieldValue + changeValue, 0, float.PositiveInfinity); //0-正无穷
+                changeValue = 0;
+                break;
             }
-            if (Mathf.Approximately(shield.Value.shieldValue, 0))
-                RemoveShield(shield.Key);
+            if(changeValue < 0)
+            {
+                changeValue = Mathf.Clamp(changeValue + shield.shieldValue, float.NegativeInfinity, 0);
+            }
+            
+            Debug.Log(key + ":" +  shield.shieldValue);
+
+            if (Mathf.Approximately(shield.shieldValue, 0))
+                RemoveShield(key);
+            if (Mathf.Approximately(changeValue, 0))
+                break;
         }
     }
 

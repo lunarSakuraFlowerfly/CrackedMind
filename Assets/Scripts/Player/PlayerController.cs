@@ -149,7 +149,7 @@ public class PlayerController : Singleton<PlayerController>
         }
         if(Input.GetKeyDown(KeyCode.Minus))
         {
-            playerShieldSystem.ChangeShieldValue(10);
+            playerShieldSystem.ChangeShieldValue(-10);
             
         }
         #endregion
