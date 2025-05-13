@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: Chapter_0_event_3_dialogue_2_1
+  m_EditorClassIdentifier: 
+  dialogueID: 001
+  startNodeID: node_01
+  speakers:
+  - speakerID: doctor
+    speakerName: "\u533B\u751F"
+    speakerType: 0
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  - speakerID: player
+    speakerName: "\u6211"
+    speakerType: 1
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  - speakerID: neighbor
+    speakerName: "\u90BB\u5C45"
+    speakerType: 0
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  nodes:
+  - nodeID: node_01
+    speakerID: doctor
+    text: "\u6211\u6CE8\u610F\u5230\u4F60\u4E00\u76F4\u5728\u73A9\u6E38\u620F\u2026\u2026\u8FD9\u662F\u4F60\u51CF\u8F7B\u75DB\u82E6\u7684\u65B9\u5F0F\uFF0C\u5BF9\u5417\uFF1F"
+    nextNodeID: node_02
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_02
+    speakerID: player
+    text: "\u2026\u2026\u81F3\u5C11\u5728\u6E38\u620F\u91CC\uFF0C\u6211\u4E0D\u4F1A\u60F3\u5230\u90A3\u4E9B\u4E8B\u2026\u2026\u5076\u5C14\u80FD\u5FD8\u8BB0\u4E00\u70B9\u3002"
+    nextNodeID: node_03
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_03
+    speakerID: doctor
+    text: "\u8FD9\u5F88\u6B63\u5E38\uFF0C\u4EBA\u4EEC\u90FD\u4F1A\u60F3\u529E\u6CD5\u9003\u907F\u75DB\u82E6\u3002\u4E0D\u8FC7\uFF0C\u6211\u4EEC\u53EF\u80FD\u8FD8\u9700\u8981\u4E00\u4E9B\u66F4\u76F4\u63A5\u7684\u65B9\u6CD5\uFF0C\u6765\u9762\u5BF9\u4F60\u7684\u5669\u68A6\u3002"
+    nextNodeID: node_04
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_04
+    speakerID: neighbor
+    text: "\u5979\u5F88\u5C11\u51FA\u623F\u95F4"
+    nextNodeID: node_05
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_05
+    speakerID: doctor
+    text: "\u597D\u7684\uFF0C\u7406\u89E3\u3002\u65E2\u7136\u4ED6\u77ED\u671F\u5185\u65E0\u6CD5\u51FA\u95E8\uFF0C\u90A3\u6211\u5C31\u8FD9\u91CC\u5F53\u4E00\u9635\u2018\u8BCA\u5BA4\u2019\u5427\u3002\u6211\u9700\u8981\u505A\u4E00\u4E2A\u66F4\u7CFB\u7EDF\u7684\u8BC4\u4F30\u3002"
+    nextNodeID: node_06
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_06
+    speakerID: neighbor
+    text: "\u597D\uFF0C\u90A3\u6211\u5148\u56DE\u907F\u4E00\u4E0B"
+    nextNodeID: 
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 6

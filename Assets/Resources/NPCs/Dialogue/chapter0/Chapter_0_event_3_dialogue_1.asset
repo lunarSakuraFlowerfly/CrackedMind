@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: Chapter_0_event_3_dialogue_1
+  m_EditorClassIdentifier: 
+  dialogueID: 001
+  startNodeID: node_01
+  speakers:
+  - speakerID: npc_001
+    speakerName: "\u90BB\u5C45"
+    speakerType: 0
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  - speakerID: player
+    speakerName: "\u6211"
+    speakerType: 1
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  nodes:
+  - nodeID: node_01
+    speakerID: npc_001
+    text: "\u6211\u5E26\u7740\u533B\u751F\u6765\u4E86\uFF0C\u6211\u4EEC\u73B0\u5728\u53EF\u4EE5\u8FDB\u6765\u5417\uFF1F"
+    nextNodeID: node_02
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_02
+    speakerID: player
+    text: "\u8FDB\u6765\u5427"
+    nextNodeID: 
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 2
