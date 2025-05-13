@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71158a5d2d84ad4a9de65450ff82196, type: 3}
+  m_Name: event_bedroom_interactions_completed
+  m_EditorClassIdentifier: 
+  eventID: event_bedroom_interactions_completed
+  eventName: "\u5F53\u73A9\u5BB6\u4E0E\u5367\u5BA4\u6240\u6709\u7269\u54C1\u4EA4\u4E92\u5B8C\u6210\u540E\u89E6\u53D1"
+  eventDescription: "\u89E3\u9664\u73A9\u5BB6\u4E0E\u95E8\u7684\u4EA4\u4E92\u9650\u5236,\u5E76\u53D1\u51FA\u6572\u95E8\u58F0\uFF0C\u7136\u540E\u663E\u793A\u6709\u5BA2\u4EBA\u6765\u8BBF\u7684ui"
+  conditions:
+  - conditionType: 2
+    referencedID: 
+    variableKey: IsBedInteracted
+    stringValue: 
+    intValue: 0
+    boolValue: 1
+    floatValue: 0
+  - conditionType: 2
+    referencedID: 
+    variableKey: IsCabinetInteracted
+    stringValue: 
+    intValue: 0
+    boolValue: 1
+    floatValue: 0
+  actions:
+  - actionType: 0
+    targetNPCID: 
+    referencedID: 
+    variableKey: 
+    stringValue: 
+    intValue: 0
+    boolValue: 0
+    floatValue: 0

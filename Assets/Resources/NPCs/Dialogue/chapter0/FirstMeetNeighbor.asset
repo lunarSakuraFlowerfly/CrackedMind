@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: FirstMeetNeighbor
+  m_EditorClassIdentifier: 
+  dialogueID: 001
+  startNodeID: node_001
+  speakers:
+  - speakerID: Player
+    speakerName: "\u6211"
+    speakerType: 1
+    portrait: {fileID: 1478540828, guid: f785df0f02e6c8f4a8682cf11ece6ccb, type: 3}
+  - speakerID: NPC
+    speakerName: "\u73A9\u5BB6"
+    speakerType: 0
+    portrait: {fileID: 0}
+  nodes:
+  - nodeID: node_001
+    speakerID: NPC
+    text: "\u4F60\u8FD8\u597D\u5417\uFF1F"
+    nextNodeID: node_002
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_002
+    speakerID: Player
+    text: "\u600E\u4E48\u53C8\u6765\u4E86\u2026\u2026\u6211\u4E0D\u60F3\u89C1\u4EFB\u4F55\u4EBA\u2026\u2026"
+    nextNodeID: node_003
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_003
+    speakerID: NPC
+    text: "\u4F60\u7684\u72B6\u6001\u770B\u8D77\u6765\u8D8A\u6765\u8D8A\u4E0D\u597D\u4E86\uFF0C\u6211\u6709\u4E9B\u62C5\u5FC3\u4F60......"
+    nextNodeID: node_004
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_004
+    speakerID: Player
+    text: ..........
+    nextNodeID: node_005
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_005
+    speakerID: NPC
+    text: "\u4F60\u2026\u2026\u4E0D\u6253\u7B97\u7EE7\u7EED\u4E0A\u5B66\u4E86\u5417\uFF1F"
+    nextNodeID: node_006
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_006
+    speakerID: Player
+    text: "\u6211\u2026\u2026\u6211\u4E0D\u77E5\u9053"
+    nextNodeID: node_007
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_007
+    speakerID: Player
+    text: "\u6211\u771F\u7684\u4E0D\u60F3\u770B\u4F60\u8FD9\u6837\u4E0B\u53BB\u2026\u2026\u6211\u5DF2\u7ECF\u8054\u7CFB\u4E86\u4E00\u4F4D\u5FC3\u7406\u533B\u751F\uFF0C\u6211\u60F3\u8BA9\u4ED6\u6765\u770B\u770B\u4F60\u3002"
+    nextNodeID: node_008
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_008
+    speakerID: Player
+    text: "\uFF08\u4E0D\u5B89\uFF09"
+    nextNodeID: node_009
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_009
+    speakerID: NPC
+    text: "\u6211\u77E5\u9053\u4F60\u4E0D\u60F3\u63D0\u8D77\u8FC7\u53BB\u7684\u4E8B\u2026\u2026\u4F46\u4F60\u4E00\u76F4\u8FD9\u6837\u9003\u907F\uFF0C\u60C5\u51B5\u53EA\u4F1A\u8D8A\u6765\u8D8A\u7CDF\u3002"
+    nextNodeID: node_010
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_010
+    speakerID: Player
+    text: "\u597D\u5427"
+    nextNodeID: 
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 10

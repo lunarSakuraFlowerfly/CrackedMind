@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/RealWorld.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/DreamWorld.unity
+    guid: 062b11534e02f394dbfa7ce6183be184
+  - enabled: 1
+    path: Assets/Scenes/Dream.unity
+    guid: 592d75034ffc17e4ab8a99dd1a445851
   m_configObjects: {}

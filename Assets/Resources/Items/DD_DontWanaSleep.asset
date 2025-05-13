@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: DD_DontWanaSleep
+  m_EditorClassIdentifier: 
+  startNodeID: node_001
+  speakers:
+  - speakerID: Player
+    speakerName: "\u4E3B\u89D2"
+    speakerType: 1
+    portrait: {fileID: -8625393602834215656, guid: baef2fe4c4614d04ba5beac97ac71e19, type: 3}
+  nodes:
+  - nodeID: node_001
+    speakerID: Player
+    text: "\u6211\u8FD8\u4E0D\u60F3\u7761\u89C9"
+    nextNodeID: 
+    choices: []
+    actions: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 1

@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: Test Dialogue Data
+  m_EditorClassIdentifier: 
+  startNodeID: node_001
+  speakers:
+  - speakerID: npc_001
+    speakerName: "\u6D4B\u8BD5NPC"
+    speakerType: 0
+    portrait: {fileID: 4510678720495395423, guid: afc7b8f1a74ee474ab75e218d6b75e7b, type: 3}
+  - speakerID: Player
+    speakerName: "\u73A9\u5BB6"
+    speakerType: 1
+    portrait: {fileID: -782855535, guid: 72c083b6246a15949a64e549ae07c922, type: 3}
+  nodes:
+  - nodeID: node_001
+    speakerID: npc_001
+    text: "\u4F60\u597D\uFF0C\u65C5\u884C\u8005\u3002\u6211\u53EF\u4EE5\u4E3A\u4F60\u8868\u6F14\u4E00\u4E2A\u79FB\u52A8\u52A8\u4F5C\u3002"
+    nextNodeID: 
+    choices:
+    - choiceID: choice_01
+      text: "\u597D\u7684\uFF0C\u8BF7\u8868\u6F14\u7ED9\u6211\u770B"
+      nextNodeID: node_003
+      conditions: []
+      actions: []
+    - choiceID: choice_02
+      text: "\u4E0D\u7528\u4E86"
+      nextNodeID: node_004
+      conditions: []
+      actions: []
+    actions: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_002
+    speakerID: npc_001
+    text: "\u597D\u7684\uFF0C\u8BF7\u8868\u6F14\u7ED9\u6211\u770B\u3002"
+    nextNodeID: node_003
+    choices: []
+    actions: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_003
+    speakerID: npc_001
+    text: "\u597D\u7684\uFF0C\u6211\u8FD9\u5C31\u79FB\u52A8\u5230\u76EE\u6807\u4F4D\u7F6E\u3002"
+    nextNodeID: 
+    choices: []
+    actions:
+    - actionType: 5
+      targetID: 
+      actionValue: 0
+      behaviorID: move_to_target
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_004
+    speakerID: 
+    text: 
+    nextNodeID: 
+    choices: []
+    actions: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 4
