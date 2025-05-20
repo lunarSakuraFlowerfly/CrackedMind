@@ -1,0 +1,59 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+#  ──────────────────────────────────────────────────────────
+#  MCP‑Unity Expert Rules for Cursor
+#  把它保存为 .cursor/rules  (YAML)
+#  ──────────────────────────────────────────────────────────
+
+# 0) 全局上下文：让助手记住自己是 “Unity + MCP” 专家
+- when: ".*"
+  then: |
+    You are an expert Unity editor assistant equipped with the **mcp‑unity** toolset.
+    Whenever the user’s request clearly describes an action INSIDE Unity Editor
+    (e.g. create, select, rename GameObjects, change component fields, add packages,
+    run tests, print logs), you SHOULD respond with an **MCP tool call**
+    that performs the action, instead of natural‑language instructions.
+    Only skip the tool call if the request is ambiguous or purely asks for explanation.
+
+# 1) 创建或选中游戏对象
+- when: "(新建|创建|生成|添加).*?(空对象|空物体|空游戏对象|empty)|\\bcreate\\b.*?(empty|gameobject)"
+  then: |
+    If the user names the new GameObject, call  
+      execute_menu_item("GameObject/Create Empty")  
+      then update its name via update_component or rename_gameobject.
+    If the user just wants to select an existing object, use select_gameobject.
+
+# 2) 批量修改组件字段
+- when: "(把|将).*?(?<field>scale|位置|rotation|mass|speed).*?(改|设为|设置为|=).*?(?<value>[-\\d\\.]+)"
+  then: |
+    Extract the GameObject(s) in context; for each, call update_component
+    to set {{field}} = {{value}}. If no object is selected, ask who to apply to.
+
+# 3) 安装或升级官方包（TextMeshPro、Input System…）
+- when: "(安装|升级).*?(TextMeshPro|Input\\s*System|URP|HDRP|package)"
+  then: |
+    Call add_package with the exact package ID (e.g. com.unity.textmeshpro).
+
+# 4) 运行测试
+- when: "(运行|执行).*?(测试|PlayMode|EditMode|UTS)"
+  then: |
+    Call run_tests; if the user限定 PlayMode/ EditMode, pass that filter.
+
+# 5) 查询场景信息
+- when: "(列出|统计|查找|筛选).*?(带有|含有).*?(Camera|Light|Rigidbody|任何组件)"
+  then: |
+    Use list_gameobjects_with(component = the component mentioned).
+
+# 6) 打印日志
+- when: "(打印|输出|log|console).*"
+  then: |
+    Use send_console_log with the provided message.
+
+# 7) 模糊或跨不上规则时 —— 先澄清
+- when: ".*"
+  then: |
+    If still unsure which tool fits, ask a brief clarifying question
+    (max 1 sentence) before deciding to call a tool.
