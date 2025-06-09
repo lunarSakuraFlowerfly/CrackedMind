@@ -96,22 +96,16 @@ namespace InteractionSystem.Data
                 PlayerPrefs.DeleteKey("CabinetKeys");
                 PlayerPrefs.Save();
                 
-                Debug.Log("CabinetItemData: 所有柜子状态已重置为初始状态");
             }
-            else
-            {
-                Debug.Log("CabinetItemData: 柜子状态保持不变");
-            }
+
         }
 
         private void OnDialogueEnd()
         {
             //如果对话结束，且第一次执行为false
-            Debug.Log("<color=blue>对话结束</color>");
             if(!isFirstTime)
             {
                 StoryManager.Instance.CabinetFirstTouchComplete();
-                Debug.Log("<color=green>柜子第一次交互完成</color>");
                 //移除结束对话事件
                 DialogueManager.Instance.OnDialogueEnd -= OnDialogueEnd;
             }
@@ -156,7 +150,6 @@ namespace InteractionSystem.Data
                 SaveItemState();
             }
             
-            Debug.Log($"CabinetItemData: OnEnable完成，当前状态 - itemID={itemID}, isFirstTime={isFirstTime}, isOpened={isOpened}");
         }
 
         public override string GetInteractPrompt()
@@ -203,7 +196,6 @@ namespace InteractionSystem.Data
             // 已开启状态完全无法交互
             if (isOpened)
             {
-                Debug.Log("柜子已开启，不可交互");
                 return false;
             }
                 

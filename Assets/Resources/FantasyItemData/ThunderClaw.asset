@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bb0c2ef561c5b4d9e5318655203da1, type: 3}
+  m_Name: ThunderClaw
+  m_EditorClassIdentifier: 
+  itemName: "\u96F7\u9706\u722A"
+  icon: {fileID: -1506535464, guid: 9c7355b0cb8a5024bba44738f70d9e74, type: 3}
+  itemType: 1
+  dropRate: 100
+  equipmentType: 0
+  itemEffects:
+  - {fileID: 11400000, guid: 4ce0c78316c578947929a95e973d4e63, type: 2}
+  strength: 63
+  agility: 41
+  intelligence: 25
+  vitality: 22
+  maxHP: 4
+  armor: 19
+  magicResistance: 13
+  evasion: 30
+  damage: 22
+  critChance: 17
+  critPower: 42
+  fireDamage: 21
+  iceDamage: 35
+  lightningDamage: 40
