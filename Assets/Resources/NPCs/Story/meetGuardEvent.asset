@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71158a5d2d84ad4a9de65450ff82196, type: 3}
+  m_Name: meetGuardEvent
+  m_EditorClassIdentifier: 
+  eventID: meet_village_guard
+  eventName: "\u9047\u5230\u6751\u5E84\u5B88\u536B"
+  eventDescription: "\u73A9\u5BB6\u7B2C\u4E00\u6B21\u9047\u5230\u6751\u5E84\u5B88\u536B"
+  conditions: []
+  actions:
+  - actionType: 0
+    targetNPCID: village_guard
+    referencedID: guard_initial_dialogue
+    variableKey: 
+    stringValue: 
+    intValue: 0
+    boolValue: 0
+    floatValue: 0

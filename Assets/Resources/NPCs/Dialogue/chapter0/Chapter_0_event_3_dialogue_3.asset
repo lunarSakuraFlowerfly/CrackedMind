@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc631ff977e4a9749835dea5f117c329, type: 3}
+  m_Name: Chapter_0_event_3_dialogue_3
+  m_EditorClassIdentifier: 
+  dialogueID: 001
+  startNodeID: node_001
+  speakers:
+  - speakerID: doctor
+    speakerName: "\u533B\u751F"
+    speakerType: 0
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  - speakerID: player
+    speakerName: "\u6211"
+    speakerType: 1
+    portrait: {fileID: -1463788318, guid: 72c4487d4f3df524292efcd8665a35e2, type: 3}
+  nodes:
+  - nodeID: node_001
+    speakerID: doctor
+    text: "\u6211\u77E5\u9053\u4F60\u4E0D\u60F3\u8C08\u90A3\u4E9B\u4E8B\u2026\u2026\u53EF\u5426\u544A\u8BC9\u6211\uFF0C\u4F60\u73B0\u5728\u5FC3\u91CC\u6700\u5BB3\u6015\u7684\u662F\u4EC0\u4E48\uFF1F"
+    nextNodeID: node_002
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_002
+    speakerID: player
+    text: "\u2026\u6211\u2026\u2026\u5BB3\u6015\u518D\u770B\u5230\u7236\u4EB2\u7684\u6837\u5B50\u2026\u2026\u6211\u6BCF\u6B21\u95ED\u4E0A\u773C\uFF0C\u5C31\u80FD\u60F3\u8D77\u2026\u2026\u90A3\u4E00\u5929\u3002"
+    nextNodeID: node_003
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_003
+    speakerID: doctor
+    text: "\u6211\u660E\u767D\uFF0C\u90A3\u4E00\u5B9A\u662F\u975E\u5E38\u53EF\u6015\u7684\u8BB0\u5FC6\u3002\u4F60\u4E0D\u5FC5\u4E00\u6B21\u5C31\u503E\u8BC9\u5B8C\uFF0C\u5982\u679C\u6709\u4E9B\u7EC6\u8282\u8BA9\u4F60\u96BE\u53D7\uFF0C\u53EF\u4EE5\u6682\u65F6\u8DF3\u8FC7\u3002"
+    nextNodeID: node_004
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_004
+    speakerID: doctor
+    text: "\u6211\u60F3\u5C1D\u8BD5\u4E00\u79CD\u65B9\u6CD5\uFF0C\u901A\u8FC7\u8F7B\u5EA6\u7684\u653E\u677E\u8BAD\u7EC3\u6216\u50AC\u7720\uFF0C\u8BA9\u4F60\u8FDB\u5165\u4E00\u4E2A\u5B89\u5168\u7684\u610F\u8C61\uFF0C\u5148\u6682\u65F6\u79BB\u5F00\u73B0\u5B9E\u5E26\u6765\u7684\u5F3A\u70C8\u75DB\u82E6\u3002\u4F60\u613F\u610F\u8BD5\u8BD5\u5417\uFF1F"
+    nextNodeID: node_005
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_005
+    speakerID: player
+    text: "\u2026\u6211\u4E0D\u77E5\u9053\u2026\u2026\u53EF\u662F\u2026\u2026\u5982\u679C\u80FD\u6446\u8131\u8FD9\u4E9B\u5669\u68A6\u2026\u2026"
+    nextNodeID: node_006
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_006
+    speakerID: doctor
+    text: "\u6211\u4E0D\u4F1A\u52C9\u5F3A\u4F60\uFF0C\u5982\u679C\u4F60\u89C9\u5F97\u4E0D\u9002\u968F\u65F6\u544A\u8BC9\u6211\u3002\u4F60\u53EF\u4EE5\u628A\u8FD9\u770B\u4F5C\u662F\u4E00\u4E2A\u653E\u677E\u8BAD\u7EC3\u3002"
+    nextNodeID: node_007
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_007
+    speakerID: doctor
+    text: "\u597D\uFF0C\u5148\u628A\u5934\u9760\u5728\u8FD9\u513F\u2026\u2026\u5C3D\u91CF\u653E\u677E\uFF0C\u95ED\u4E0A\u773C\uFF0C\u6DF1\u547C\u5438\u2026\u2026\u8BA9\u6211\u6765\u5E26\u4F60\u8D70\u8FDB\u4E00\u4E2A\u66F4\u5E73\u548C\u7684\u72B6\u6001\u3002"
+    nextNodeID: node_008
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  - nodeID: node_008
+    speakerID: doctor
+    text: "\u6211\u8981\u6570\u4E09\u4E2A\u6570\uFF0C\u4E4B\u540E\u4F60\u4F1A\u6162\u6162\u611F\u89C9\u5230\u8EAB\u4F53\u8D8A\u6765\u8D8A\u8F7B\u2026\u2026\u5982\u679C\u6709\u4EC0\u4E48\u4E0D\u9002\uFF0C\u8BF7\u9A6C\u4E0A\u544A\u8BC9\u6211\u3002"
+    nextNodeID: 
+    choices: []
+    voiceClip: {fileID: 0}
+    lastChoiceCount: 0
+  lastNodeCount: 8

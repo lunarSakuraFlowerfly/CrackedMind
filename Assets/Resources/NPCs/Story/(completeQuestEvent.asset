@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71158a5d2d84ad4a9de65450ff82196, type: 3}
+  m_Name: (completeQuestEvent
+  m_EditorClassIdentifier: 
+  eventID: complete_monster_quest
+  eventName: "\u5B8C\u6210\u9B54\u7269\u4EFB\u52A1"
+  eventDescription: "\u73A9\u5BB6\u5B8C\u6210\u8C03\u67E5\u9B54\u7269\u7684\u4EFB\u52A1"
+  conditions:
+  - conditionType: 2
+    referencedID: 
+    variableKey: i_monsters_defeated
+    stringValue: 
+    intValue: 3
+    boolValue: 0
+    floatValue: 0
+  actions:
+  - actionType: 4
+    targetNPCID: 
+    referencedID: 
+    variableKey: b_village_accessible
+    stringValue: 
+    intValue: 0
+    boolValue: 0
+    floatValue: 0
