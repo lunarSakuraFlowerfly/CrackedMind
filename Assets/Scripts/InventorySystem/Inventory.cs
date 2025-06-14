@@ -121,7 +121,10 @@ public class Inventory : MonoBehaviour
         switch(_item.itemType)
         {
             case ItemType.Equipment:
-                AddToInventory(_item);
+                if(CanAddItem())
+                {
+                    AddToInventory(_item);
+                }
                 break;
             case ItemType.Material:
                 AddToStash(_item);
@@ -156,6 +159,16 @@ public class Inventory : MonoBehaviour
             stash.Add(newItem);
             stashDictionary.Add(_item, newItem);
         }
+    } 
+
+    public bool CanAddItem()
+    {
+        if(inventory.Count >= inventoryItemSlots.Length)
+        {
+            Debug.Log("Inventory is full");
+            return false;
+        }
+        return true;
     }
     #endregion
 
@@ -254,5 +267,24 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Flask is on cooldown");
         }
+    }
+
+    public bool CanCraft(ItemData_Equipment _craftData,List<InventoryItem> _craftMaterials)
+    {
+        foreach(var item in _craftMaterials)
+        {
+            if(!stashDictionary.TryGetValue(item.data, out InventoryItem inventoryItem)&&!inventoryDictionary.TryGetValue(item.data, out inventoryItem))
+            {
+                Debug.Log("You don't have the required materials to craft " + _craftData.itemName);
+                return false;
+            }
+
+        }
+        foreach(var item in _craftMaterials)
+        {
+            RemoveItem(item.data);
+        }
+        AddItem(_craftData);
+        return true;
     }
 }

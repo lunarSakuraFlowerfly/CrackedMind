@@ -47,6 +47,7 @@ public class Player : Entity
     public PlayerCatchSwordState catchSwordState {get;private set;}
     public PlayerBlackholeState blackholeState {get;private set;}
     public PlayerDeadState deadState {get;private set;}
+    public PlayerShieldState shieldState {get;private set;}
     #endregion
 
     #region 周期函数
@@ -67,6 +68,7 @@ public class Player : Entity
         catchSwordState = new PlayerCatchSwordState(this,stateMachine,"CatchSword");
         blackholeState = new PlayerBlackholeState(this,stateMachine,"Jump");
         deadState = new PlayerDeadState(this,stateMachine,"Dead");
+        shieldState = new PlayerShieldState(this,stateMachine,"Shield");
     }
 
     protected override void Start()
@@ -83,7 +85,8 @@ public class Player : Entity
         base.Update();
         
         stateMachine.currentState.Update();
-        if(Input.GetKeyDown(KeyCode.F))
+    
+        if(Input.GetKeyDown(KeyCode.F)&&skill.crystalSkill.crystalUnlocked)
         {
             skill.crystalSkill.CanUseSkill();
         }
@@ -92,6 +95,7 @@ public class Player : Entity
             Inventory.instance.UseFlask();
         }
 
+        Debug.Log("Sword是否存在: " + Sword != null);
     }
     #endregion
 

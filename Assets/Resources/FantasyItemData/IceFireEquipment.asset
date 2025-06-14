@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   icon: {fileID: 0}
-  itemType: 0
+  itemType: 1
   dropRate: 0
   equipmentType: 0
+  cooldown: 0
   itemEffects: []
+  itemEffectDescription: 
   strength: 0
   agility: 0
   intelligence: 0
@@ -32,3 +34,8 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 932200bf81d922a409d9645783efc188, type: 2}
+    stackSize: 2
+  - data: {fileID: 11400000, guid: becf3f5c11518874da807385c4c77f0b, type: 2}
+    stackSize: 1

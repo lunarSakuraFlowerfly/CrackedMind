@@ -22,12 +22,12 @@ public class PlayerItemDrop : ItemDrop
             }
         }
         List<InventoryItem> materalsToLoose = new List<InventoryItem>();
-        foreach(InventoryItem item in Inventory.instance.stash)
+        
+        foreach (InventoryItem item in Inventory.instance.stash)
         {
-            if(Random.Range(0,100) <= chanceToLooseStashItems)
+            if (Random.Range(0, 100) <= chanceToLooseStashItems)
             {
                 DropItem(item.data);
-                Inventory.instance.RemoveItem(item.data);
                 materalsToLoose.Add(item);
             }
         }

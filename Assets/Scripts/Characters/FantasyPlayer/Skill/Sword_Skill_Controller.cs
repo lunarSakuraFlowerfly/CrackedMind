@@ -89,7 +89,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if(isReturning)
         {
             transform.position = Vector2.MoveTowards(transform.position,player.transform.position,Time.deltaTime*returnSpeed);
-            if(Vector2.Distance(transform.position,player.transform.position)<2)
+            if(Vector2.Distance(transform.position,player.transform.position)<0.2)
             {
                 player.ClearTheSword();
             }

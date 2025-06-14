@@ -13,14 +13,14 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.skill.cloneSkill.CreateCloneOnDashStart();
+        player.skill.dashSkill.CloneOnDash();
         stateTimer = player.dashDuration;
         
     }
     public override void Exit()
     {
         base.Exit();
-        player.skill.cloneSkill.CreateCloneOnDashEnd();
+        player.skill.dashSkill.CloneOnArrival();
     }
     public override void Update()
     {

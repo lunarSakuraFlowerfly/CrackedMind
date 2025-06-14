@@ -17,8 +17,10 @@ MonoBehaviour:
   itemType: 1
   dropRate: 100
   equipmentType: 0
+  cooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: 4ce0c78316c578947929a95e973d4e63, type: 2}
+  itemEffectDescription: 
   strength: 63
   agility: 41
   intelligence: 25
@@ -33,3 +35,10 @@ MonoBehaviour:
   fireDamage: 21
   iceDamage: 35
   lightningDamage: 40
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 932200bf81d922a409d9645783efc188, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 3c230b9e2123f3e448d4f860737927cd, type: 2}
+    stackSize: 3
+  - data: {fileID: 11400000, guid: 6d5eea3e4567ddb43afc591307614373, type: 2}
+    stackSize: 2

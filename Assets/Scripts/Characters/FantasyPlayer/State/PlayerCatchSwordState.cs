@@ -11,7 +11,10 @@ public class PlayerCatchSwordState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        
         sword = player.Sword.transform;
+                
         if(player.transform.position.x > sword.position.x&&player.facingDirection==1)
         {
             player.Flip();
@@ -21,6 +24,8 @@ public class PlayerCatchSwordState : PlayerState
             player.Flip();
         }
         rb.velocity = new Vector2(player.swordReturnImpact * -player.facingDirection,rb.velocity.y);
+        
+        
     }
     public override void Exit()
     {

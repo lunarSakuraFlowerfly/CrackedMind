@@ -39,8 +39,10 @@ public class PlayerState
         dashCoolDownTimer -= Time.deltaTime;
         xInput = Input.GetAxisRaw("Horizontal");
         player.anim.SetFloat("yVelocity",rb.velocity.y);
+        
         if(Input.GetKeyDown(KeyCode.LeftShift) && dashCoolDownTimer < 0)
         {
+            if(!player.skill.dashSkill.dashUnlocked) return;
             stateMachine.ChangeState(player.dashState);
             dashCoolDownTimer = player.dashCoolDown;
         }
@@ -57,5 +59,7 @@ public class PlayerState
     {
         triggerCalled = true;
     }
+
+    
 
 }

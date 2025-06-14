@@ -50,6 +50,9 @@ public class CharacterStats : MonoBehaviour
     public bool isFrozend;//是否冰冻 减少20%防御
     public bool isShocked;//是否电击 降低命中率
 
+    [Header("Shield Stats")]
+    [SerializeField] private int shieldValue;
+
 
     [SerializeField] private float ailmentsDuration = 4;
     private float ignitedTimer;
@@ -62,6 +65,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject shockStrikePrefab;
     public int shockDamage;
     public bool isDead;
+
     
 
     [SerializeField] private int currentHP;//当前生命值
@@ -107,7 +111,20 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void DecreaseHealthBy(int _damage)
     {
-        currentHP -= _damage;
+        if(shieldValue>0)
+        {
+            shieldValue -= _damage;
+            if(shieldValue<0)
+            {
+                currentHP += shieldValue;
+                shieldValue = 0;
+            }
+            
+        }
+        else
+        {
+            currentHP -= _damage;
+        }
         if(OnHealthChanged!=null)
         {
             OnHealthChanged.Invoke();
@@ -290,6 +307,11 @@ public class CharacterStats : MonoBehaviour
         isDead = true;
     }
 
+    public virtual void OnEvasion()
+    {
+
+    }
+
     /// <summary>
     /// 闪避判定
     /// </summary>
@@ -306,6 +328,7 @@ public class CharacterStats : MonoBehaviour
         
         if(Random.Range(0,100)<totalEvasion)
         {
+            _targetStats.OnEvasion();
             return true;
         }
         return false;
@@ -346,6 +369,7 @@ public class CharacterStats : MonoBehaviour
     #region 获取属性
     public int GetMaxHP()=>maxHP.GetValue()+vitality.GetValue()*5;
     public int GetCurrentHP()=>currentHP;
+    public int GetShieldValue()=>shieldValue;
     #endregion
 
     #region 设置属性
@@ -376,6 +400,15 @@ public class CharacterStats : MonoBehaviour
         {
             OnHealthChanged.Invoke();
         }
+    }
+
+    public void AddShield(int _shieldValue)
+    {
+        shieldValue += _shieldValue;
+    }
+    public void RemoveShield()
+    {
+        shieldValue =0;
     }
 
     

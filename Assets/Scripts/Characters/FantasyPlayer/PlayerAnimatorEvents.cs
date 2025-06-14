@@ -33,6 +33,9 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     private void ThrowSword()
     {
-        player.skill.swordSkill.CreateSword();
+        if(player.Sword == null)
+        {
+            player.skill.swordSkill.CreateSword();
+        }
     }
 }

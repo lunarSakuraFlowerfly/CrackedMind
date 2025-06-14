@@ -19,6 +19,11 @@ public class ItemObject : MonoBehaviour
     public void Pickup()
     {
         if(PlayerManager.instance.player.GetComponent<PlayerStats>().isDead) return;
+        if(!Inventory.instance.CanAddItem()&&itemData.itemType == ItemType.Equipment)
+        {
+            rb.velocity = new Vector2(0, 7);
+            return;
+        }
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }

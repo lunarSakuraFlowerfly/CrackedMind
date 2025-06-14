@@ -12,6 +12,7 @@ class UI_EquipmentSlot : UI_ItemSlot
         if(item==null||item.data==null) return;
         //卸下装备
         Inventory.instance.UnequipItem(item.data as ItemData_Equipment);
+        ui.itemToolTip.HideToolTip();
         CleanUpSlot();
     }
 }

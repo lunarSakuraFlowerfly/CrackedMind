@@ -22,7 +22,7 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && player.skill.parrySkill.parryUnlocked)
         {
             stateMachine.ChangeState(player.counterAttackState);
         }
@@ -45,6 +45,16 @@ public class PlayerGroundedState : PlayerState
         if(Input.GetKeyDown(KeyCode.R))
         {
             stateMachine.ChangeState(player.blackholeState);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)&&player.skill.shieldSkill.shieldUnlocked)
+        {
+            
+            if(player.skill.shieldSkill.CanUseSkill())
+            {
+                stateMachine.ChangeState(player.shieldState);
+            }
+        
+
         }
     }
     private bool HasNoSword()

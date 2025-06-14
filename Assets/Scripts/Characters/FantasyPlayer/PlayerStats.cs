@@ -20,5 +20,10 @@ public class PlayerStats : CharacterStats
         player.Die();
         playerItemDrop.GenerateDrops();
     }
+    public override void OnEvasion()
+    {
+        base.OnEvasion();
+        Debug.Log("OnEvasion");
+    }
 }
 
