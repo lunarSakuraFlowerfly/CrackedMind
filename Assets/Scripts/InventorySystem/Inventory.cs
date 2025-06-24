@@ -39,18 +39,21 @@ public class Inventory : MonoBehaviour,ISaveManager
             instance = this;
         else
             Destroy(gameObject);
+
+        // 初始化集合和字典
+        inventory = new List<InventoryItem>();
+        inventoryDictionary = new Dictionary<ItemDataSO, InventoryItem>();
+        stash = new List<InventoryItem>();
+        stashDictionary = new Dictionary<ItemDataSO, InventoryItem>();
+        equipment = new List<InventoryItem>();
+        equipmentDictionary = new Dictionary<ItemData_Equipment, InventoryItem>();
     }
 
     private void Start()
     {
-        inventory = new List<InventoryItem>();
-        inventoryDictionary = new Dictionary<ItemDataSO, InventoryItem>();
+        // 初始化UI相关的数组
         inventoryItemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
-        stash = new List<InventoryItem>();
-        stashDictionary = new Dictionary<ItemDataSO, InventoryItem>();
         stashItemSlots = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
-        equipment = new List<InventoryItem>();
-        equipmentDictionary = new Dictionary<ItemData_Equipment, InventoryItem>();
         equipmentSlots = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
         statSlots = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
@@ -313,20 +316,84 @@ public class Inventory : MonoBehaviour,ISaveManager
     }
     public void SaveData(ref GameData _data)
     {
-        _data.inventory.Clear();
-        foreach(var pair in inventoryDictionary)
+        Debug.Log("Inventory.SaveData 开始执行");
+        
+        if(_data == null)
         {
-            _data.inventory.Add(pair.Key.itemID,pair.Value.stackSize);
-        }
-        foreach(var pair in stashDictionary)
-        {
-            _data.inventory.Add(pair.Key.itemID,pair.Value.stackSize);
-        }
-        foreach(var pair in equipmentDictionary)
-        {
-            _data.equipmentId.Add(pair.Key.itemID);
+            Debug.LogError("Inventory.SaveData: GameData为空！");
+            return;
         }
 
+        Debug.Log("检查GameData的集合初始化状态");
+        // 确保GameData的集合已初始化
+        if (_data.inventory == null)
+        {
+            Debug.Log("初始化 _data.inventory");
+            _data.inventory = new SerializableDictionary<string, int>();
+        }
+        if (_data.equipmentId == null)
+        {
+            Debug.Log("初始化 _data.equipmentId");  
+            _data.equipmentId = new List<string>();
+        }
+
+        Debug.Log("清空现有数据");
+        _data.inventory.Clear();
+        _data.equipmentId.Clear();
+
+        Debug.Log("开始保存inventory数据");
+        // 确保字典已初始化
+        if (inventoryDictionary != null)
+        {
+            Debug.Log($"inventoryDictionary包含 {inventoryDictionary.Count} 个物品");
+            foreach(var pair in inventoryDictionary)
+            {
+                if (pair.Key != null && pair.Value != null)
+                {
+                    _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("inventoryDictionary为空");
+        }
+
+        Debug.Log("开始保存stash数据");
+        if (stashDictionary != null)
+        {
+            Debug.Log($"stashDictionary包含 {stashDictionary.Count} 个物品");
+            foreach(var pair in stashDictionary)
+            {
+                if (pair.Key != null && pair.Value != null)
+                {
+                    _data.inventory.Add(pair.Key.itemID, pair.Value.stackSize);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("stashDictionary为空");
+        }
+
+        Debug.Log("开始保存equipment数据");
+        if (equipmentDictionary != null)
+        {
+            Debug.Log($"equipmentDictionary包含 {equipmentDictionary.Count} 个装备");
+            foreach(var pair in equipmentDictionary)
+            {
+                if (pair.Key != null)
+                {
+                    _data.equipmentId.Add(pair.Key.itemID);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("equipmentDictionary为空");
+        }
+
+        Debug.Log($"保存数据完成 - 物品数量: {_data.inventory.Count}, 装备数量: {_data.equipmentId.Count}");
     }
     public void LoadData(GameData _data)
     {

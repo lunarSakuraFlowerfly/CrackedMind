@@ -244,7 +244,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -327205275
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 00cf34b5ef5a32f468b72081dfb73d3d, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.74509805}
@@ -486,13 +486,13 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 8
     modifiers: 
   iceDamage:
-    baseValue: 3
+    baseValue: 4
     modifiers: 
   lightningDamage:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   isIgnited: 0
   isFrozend: 0
@@ -503,6 +503,9 @@ MonoBehaviour:
   shockDamage: 20
   isDead: 0
   currentHP: 0
+  soulsDropAmount:
+    baseValue: 0
+    modifiers: 
   level: 0
   percentageModifier: 0.4
   itemDrop: {fileID: 4373192569606218709}
@@ -520,12 +523,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropAmount: 4
   possibleDrops:
-  - {fileID: 11400000, guid: f6f5724c2b6087e4d965c33c03471bf1, type: 2}
-  - {fileID: 11400000, guid: becf3f5c11518874da807385c4c77f0b, type: 2}
-  - {fileID: 11400000, guid: 932200bf81d922a409d9645783efc188, type: 2}
-  - {fileID: 11400000, guid: dadbd5682de1d654085dc73f70417b23, type: 2}
-  - {fileID: 11400000, guid: 19d8e3df74128f749b88cfbbba6752cb, type: 2}
-  - {fileID: 11400000, guid: 3c230b9e2123f3e448d4f860737927cd, type: 2}
+  - {fileID: 11400000, guid: 4bf22b751459d2643a9bd4086c2d94db, type: 2}
+  - {fileID: 11400000, guid: 3d32f6551423f2d4991cbcd0dfa8f0be, type: 2}
+  - {fileID: 11400000, guid: 74ba0d64371730748bc0c8452db16704, type: 2}
+  - {fileID: 11400000, guid: 6722e1b841b02794c9c9b32d6c254357, type: 2}
+  - {fileID: 11400000, guid: 1bfbbbcffa1eca7419e83425f1045c09, type: 2}
   dropPrefab: {fileID: 6773688644772669694, guid: a69a6b8e0bd15e84f9f4f23c53f97ed1, type: 3}
 --- !u!1 &5558526878890347376
 GameObject:
@@ -555,7 +557,7 @@ Transform:
   m_GameObject: {fileID: 5558526878890347376}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.36, y: -1.07, z: 0}
+  m_LocalPosition: {x: 0.015, y: -0.307, z: 0}
   m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -600,7 +602,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1958731037
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4283951784519e34881c9ee0efd93b88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -646,7 +648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a8cea829d6b0e41abc87b6102f1ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomPositionRange: {x: 0.5, y: 0.5}
+  randomPositionMinRange: {x: -0.5, y: -1}
+  randomPositionMaxRange: {x: 0, y: -0.3}
 --- !u!1 &6278485406784081663
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +724,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -327205275
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -862072993, guid: cc71415bc56e07742a0bede3d4be6d2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -779,6 +782,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e961609bace9a4489994bf71fa31118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpTextPrefab: {fileID: 9025474154254412740, guid: 23e560180636b494085c31db14627d1d, type: 3}
+  screenShake: {fileID: 0}
+  shakeMultiplier: 0
+  shakePower: {x: 0, y: 0, z: 0}
+  afterImageCooldown: 0
+  afterImagePrefab: {fileID: 0}
+  colorLooseRate: 0
+  parent: {fileID: 5139784807914423878}
   hitMat: {fileID: 2100000, guid: 5374734ce59a6794b9a9dcd9ffa39cf9, type: 2}
   chillColor:
   - {r: 0.638, g: 0.6452234, b: 1, a: 6.7406024e+22}
@@ -788,7 +799,11 @@ MonoBehaviour:
   - {r: 1, g: 0.52156866, b: 0.52156866, a: 1}
   shockColor:
   - {r: 1, g: 0.8156863, b: 0.24705882, a: 1}
-  - {r: 1, g: 0.92156863, b: 0.6745098, a: 1}
+  - {r: 1, g: 0.93390626, b: 0.73, a: 1}
+  hitFX: {fileID: 3111670978535609302, guid: 9c8b0c8db08ad3c4eafed7670b95303c, type: 3}
+  criticalHitFX: {fileID: 654569369841512277, guid: dc9c04c0b5f893f4ebed71047b12eb28, type: 3}
+  entity: {fileID: 6299784354456888956}
+  dustFX: {fileID: 0}
 --- !u!1 &6379936609511333090
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +893,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1958731037
   m_SortingOrder: 19

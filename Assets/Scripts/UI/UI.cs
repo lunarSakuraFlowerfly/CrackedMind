@@ -163,6 +163,9 @@ public class UI : MonoBehaviour,ISaveManager
         endText.SetActive(true);
     }
 
+    //死亡后转换到realworld
+    
+
     public void RestartGameButton()
     {
         // 播放重启游戏按钮音效

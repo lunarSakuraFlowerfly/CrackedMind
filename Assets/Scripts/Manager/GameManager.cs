@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour,ISaveManager
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 场景切换时保留
         }
         else
         {
@@ -59,6 +58,8 @@ public class GameManager : MonoBehaviour,ISaveManager
     }
 
     
+
+    
     // 更新游戏时间
     private void Update()
     {
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour,ISaveManager
 
     public void SaveData(ref GameData _data)
     {
-        _data.closestCheckpointId = FindClosestCheckpoint().id;
+        _data.closestCheckpointId = FindClosestCheckpoint()?.id;
         _data.checkpoints.Clear();
         foreach(Checkpoint checkpoint in checkpoints)
         {

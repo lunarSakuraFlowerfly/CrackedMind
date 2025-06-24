@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7ede03c55a6db478da25f97aa9535b, type: 3}
   m_Name: IronData
   m_EditorClassIdentifier: 
-  itemName: "\u77F3\u5934"
-  icon: {fileID: -1628513395, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
   itemType: 0
-  dropRate: 20
+  itemName: "\u94C1\u7C89"
+  icon: {fileID: 1357857371, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 4bf22b751459d2643a9bd4086c2d94db
+  dropRate: 15

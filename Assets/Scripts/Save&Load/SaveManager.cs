@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
     public void NewGame()
     {
         gameData = new GameData();
+        Debug.Log("新游戏数据已创建并保存到文件");
     }
 
     public void LoadGame()

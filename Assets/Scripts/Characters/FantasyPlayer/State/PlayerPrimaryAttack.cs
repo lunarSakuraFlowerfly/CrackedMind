@@ -16,6 +16,7 @@ public class PlayerPrimaryAttack : PlayerState
     {
         base.Enter();
         AudioManager.instance.PlaySFX(0,null);//attack effect
+        player.fx.ScreenShake();
         player.anim.SetInteger("ComboCounter",comboCounter);
         if(Time.time - lastTimeAttacked > comboWindow)
         {
@@ -24,10 +25,7 @@ public class PlayerPrimaryAttack : PlayerState
 
         #region 选择攻击方向
         float attackDirection = player.facingDirection;
-        if(xInput != 0)
-        {
-            attackDirection = xInput;
-        }
+        
         #endregion
 
 

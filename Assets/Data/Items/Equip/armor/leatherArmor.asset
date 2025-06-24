@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bb0c2ef561c5b4d9e5318655203da1, type: 3}
+  m_Name: leatherArmor
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u5E03\u8863"
+  icon: {fileID: 288293509, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: 34234645b2ba6d1478775532a159d214
+  dropRate: 12
+  equipmentType: 0
+  cooldown: 0
+  itemEffects: []
+  itemEffectDescription: 
+  strength: 0
+  agility: 25
+  intelligence: 0
+  vitality: 0
+  maxHP: 80
+  armor: 35
+  magicResistance: 35
+  evasion: 20
+  damage: 0
+  critChance: 0
+  critPower: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials: []

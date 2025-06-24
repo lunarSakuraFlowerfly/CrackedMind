@@ -43,7 +43,6 @@ public class BaseSkill : MonoBehaviour
             cooldownTimer = cooldown;
             return true;
         }
-        Debug.Log("技能冷却中");
         return false;
     }
     public virtual void UseSkill()

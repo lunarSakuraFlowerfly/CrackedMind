@@ -38,7 +38,7 @@ public class UI_MainMenu : MonoBehaviour
             AudioManager.instance.PlaySFX(4, null);
             
         Debug.Log("exit game");
-        //Application.Quit();
+        Application.Quit();
     }
 
     IEnumerator LoadSceneWithFadeEffect(float _delay)

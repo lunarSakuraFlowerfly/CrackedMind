@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bb0c2ef561c5b4d9e5318655203da1, type: 3}
+  m_Name: IceFireEquipment
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u6C34\u706B\u5251"
+  icon: {fileID: -1943397117, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  itemID: 5e614ecfd46f5264491549c8349407fd
+  dropRate: 0
+  equipmentType: 0
+  cooldown: 3
+  itemEffects:
+  - {fileID: 11400000, guid: 0e63899cc14bdae4bb8751955e7381a3, type: 2}
+  itemEffectDescription: 
+  strength: 0
+  agility: 21
+  intelligence: 20
+  vitality: 25
+  maxHP: 0
+  armor: 0
+  magicResistance: 0
+  evasion: 0
+  damage: 60
+  critChance: 0
+  critPower: 0
+  fireDamage: 88
+  iceDamage: 88
+  lightningDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 932200bf81d922a409d9645783efc188, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: becf3f5c11518874da807385c4c77f0b, type: 2}
+    stackSize: 1

@@ -135,6 +135,7 @@ public class CharacterStats : MonoBehaviour
             shieldValue -= _damage;
             if(shieldValue<0)
             {
+                fx.CreatePopUpText((-shieldValue).ToString());
                 currentHP += shieldValue;
                 shieldValue = 0;
             }
@@ -147,6 +148,7 @@ public class CharacterStats : MonoBehaviour
                 GetComponent<Entity>().SetupKnockbackPower(new Vector2(10,15));
             }
             currentHP -= _damage;
+            fx.CreatePopUpText(_damage.ToString());
         }
         if(OnHealthChanged!=null)
         {
@@ -164,6 +166,7 @@ public class CharacterStats : MonoBehaviour
     {
         if(_targetStats.currentHP<=0) return;
         _targetStats.GetComponent<Entity>().SetKnockbackDir(transform);
+
         DoPhysicalDamage(_targetStats);
         DoMagicDamage(_targetStats);
     }
@@ -197,10 +200,20 @@ public class CharacterStats : MonoBehaviour
         {
             totalDamage -= _targetStats.armor.GetValue();
         }
-        totalDamage = Mathf.Clamp(totalDamage,0,int.MaxValue);        
+        totalDamage = Mathf.Clamp(totalDamage,0,int.MaxValue);     
+        bool isCrit = false;   
         if(CanCrit())
         {
             totalDamage *= critPower.GetValue()/100.0f;
+            isCrit = true;
+        }
+        if(isCrit)
+        {
+            fx.CreateHitFX(_targetStats.transform,true);
+        }
+        else
+        {
+            fx.CreateHitFX(_targetStats.transform,false);
         }
         return Mathf.RoundToInt(totalDamage);
     }

@@ -21,6 +21,7 @@ public class FileDataHandler
     public void Save(GameData _data)
     {
         string fullPath = Path.Combine(dataDirPath,dataFileName);
+        Debug.Log("Saving data to " + fullPath);
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -48,6 +49,7 @@ public class FileDataHandler
     public GameData Load()
     {
         string fullPath = Path.Combine(dataDirPath,dataFileName);
+        Debug.Log("Loading data from " + fullPath);
         GameData loadedData = null;
         if(File.Exists(fullPath))
         {

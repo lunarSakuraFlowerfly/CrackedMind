@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bb0c2ef561c5b4d9e5318655203da1, type: 3}
+  m_Name: IronBootData
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u94C1\u9774"
+  icon: {fileID: 922760870, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: ffee49c44af345648a63226182d32adb
+  dropRate: 0
+  equipmentType: 2
+  cooldown: 0
+  itemEffects: []
+  itemEffectDescription: 
+  strength: 0
+  agility: 45
+  intelligence: 0
+  vitality: 0
+  maxHP: 0
+  armor: 32
+  magicResistance: 32
+  evasion: 70
+  damage: 0
+  critChance: 0
+  critPower: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials: []

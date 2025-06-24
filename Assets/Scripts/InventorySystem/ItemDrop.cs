@@ -18,9 +18,10 @@ public class ItemDrop : MonoBehaviour
             if(Random.Range(0,100) <= possibleDrops[i].dropRate)
                 drops.Add(possibleDrops[i]);
         }
-        for(int i = 0; i < dropAmount; i++)
+        if(drops.Count == 0) return;
+        for (int i = 0; i < dropAmount; i++)
         {
-            ItemDataSO randomDrop = drops[Random.Range(0,drops.Count)];
+            ItemDataSO randomDrop = drops[Random.Range(0, drops.Count)];
             DropItem(randomDrop);
         }
     }

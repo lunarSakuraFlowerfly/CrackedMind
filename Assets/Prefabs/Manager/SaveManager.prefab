@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2296720899652693013}
-  - component: {fileID: 4248205795021193576}
+  - component: {fileID: 704792642812651918}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4248205795021193576
+--- !u!114 &704792642812651918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c359c5b74f13c49b1121583307b2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: data.alexdev
-  encryptData: 1
+  fileName: save1.ss
+  encryptData: 0

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56bb0c2ef561c5b4d9e5318655203da1, type: 3}
+  m_Name: DiaRingData
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u94BB\u6212"
+  icon: {fileID: 1595223582, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemID: b51114c2be5ebe74db94c7267a018b29
+  dropRate: 0
+  equipmentType: 3
+  cooldown: 0
+  itemEffects: []
+  itemEffectDescription: 
+  strength: 0
+  agility: 0
+  intelligence: 120
+  vitality: 0
+  maxHP: 0
+  armor: 0
+  magicResistance: 50
+  evasion: 0
+  damage: 0
+  critChance: 0
+  critPower: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 35a50bf71b76c514aaad392b2ff618da, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 37710f085b4af8a488d9eeb3c73fe5e8, type: 2}
+    stackSize: 1

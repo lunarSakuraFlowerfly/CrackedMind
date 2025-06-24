@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCatchSwordState : PlayerState
 {
     private Transform sword;
+    [SerializeField] private Vector2 shakePower = new Vector2(1f,0.5f); 
     public PlayerCatchSwordState(Player _player,PlayerStateMachine _stateMachine,string _animBoolName) : base(_player,_stateMachine,_animBoolName)
     {
     }
@@ -14,6 +15,8 @@ public class PlayerCatchSwordState : PlayerState
 
         
         sword = player.Sword.transform;
+        player.fx.PlayDustFX();
+        player.fx.ScreenShake(shakePower);
                 
         if(player.transform.position.x > sword.position.x&&player.facingDirection==1)
         {
